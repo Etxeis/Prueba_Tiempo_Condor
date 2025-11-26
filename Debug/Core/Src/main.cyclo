@@ -1,0 +1,16 @@
+../Core/Src/main.c:60:6:iniciar_DWT	1
+../Core/Src/main.c:69:6:test_printeo_caracter	2
+../Core/Src/main.c:80:6:test_printeo_multiples_caracteres	2
+../Core/Src/main.c:92:6:test_asignaciones_8bits	2
+../Core/Src/main.c:106:6:test_asignaciones_16bits	2
+../Core/Src/main.c:120:6:test_asignaciones_32bits	2
+../Core/Src/main.c:135:6:test_lectura_tim_dos	2
+../Core/Src/main.c:148:6:test_switch	6
+../Core/Src/main.c:169:6:test_if	19
+../Core/Src/main.c:220:6:test_coincidencias	5
+../Core/Src/main.c:242:6:medir_tiempo_ejemplo	1
+../Core/Src/main.c:335:5:main	2
+../Core/Src/main.c:404:6:SystemClock_Config	4
+../Core/Src/main.c:464:13:MX_GPIO_Init	1
+../Core/Src/main.c:499:6:MPU_Config	1
+../Core/Src/main.c:530:6:Error_Handler	1
