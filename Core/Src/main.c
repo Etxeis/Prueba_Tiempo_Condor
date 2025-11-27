@@ -217,6 +217,7 @@ void test_if(uint32_t iteraciones, uint8_t condiciones)
 }
 
 
+// Medición de coincidencias 
 void test_coincidencias(uint32_t iteraciones)
 {
     volatile uint32_t counter = 0;
