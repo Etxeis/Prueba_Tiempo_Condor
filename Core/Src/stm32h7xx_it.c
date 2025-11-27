@@ -207,21 +207,6 @@ void EXTI15_10_IRQHandler(void)
 
   /* USER CODE END EXTI15_10_IRQn 0 */
   BSP_PB_IRQHandler(BUTTON_USER);
-  uint32_t tick = DWT->CYCCNT;
-  if(tick>2147000000){
-  	  DWT->CYCCNT = 0;
-  	  tick=0;
-    }
-  uint32_t tiempo=tick*(1.8181818);//(1e9f / 84000000);*este calculo no lo realiza de buena manera
-  int seg=tick/550000000;//tiempo/1e9f;
-  int mili=(tiempo-(int)seg*1e9)/1e6f;
-  int micro=(tiempo-(int)seg*1e9-(int)mili*1e6)/1e3f;
-  int nano=(tiempo-(int)seg*1e9-(int)mili*1e6-(int)micro*1e3);
-  printf("Nueva Medición \r\n");
-  printf("Numero tick presionado: %lu \r\n",tick);
-  printf("Botón presionado: %lu ns \r\n", tiempo);
-  printf("Botón presionado: %i s, %i ms, %i us, %i ns \r\n", (int)seg,(int)mili,(int)micro,(int)nano);
-  printf("\n");
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
   /* USER CODE END EXTI15_10_IRQn 1 */

@@ -1,0 +1,11 @@
+# Build output directories
+/Debug/
+/Release/
+/build/
+
+# IDE specific files and directories
+/.metadata/
+/.settings/
+/.mxproject
+/*.launch
+*.log
