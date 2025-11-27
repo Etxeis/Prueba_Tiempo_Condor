@@ -10,11 +10,4 @@
 ../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:371:9:BSP_PB_GetState	16	static
 ../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:381:6:BSP_PB_IRQHandler	16	static
 ../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:391:13:BSP_PB_Callback	16	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:409:9:BSP_COM_Init	24	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:447:9:BSP_COM_DeInit	24	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:480:26:MX_USART3_Init	16	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:578:9:BSP_COM_SelectLogPort	16	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:591:6:__io_putchar	16	static
 ../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:613:13:BUTTON_USER_EXTI_Callback	8	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:624:13:COM1_MspInit	48	static
-../Drivers/BSP/STM32H7xx_Nucleo/stm32h7xx_nucleo.c:658:13:COM1_MspDeInit	40	static

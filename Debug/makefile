@@ -61,8 +61,8 @@ all: main-build
 main-build: Prueba_tiempo_condor.elf secondary-outputs
 
 # Tool invocations
-Prueba_tiempo_condor.elf Prueba_tiempo_condor.map: $(OBJS) $(USER_OBJS) C:\Users\Pablo\STM32CubeIDE\workspace_1.18.1\Prueba_tiempo_condor\STM32H723ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Prueba_tiempo_condor.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Pablo\STM32CubeIDE\workspace_1.18.1\Prueba_tiempo_condor\STM32H723ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Prueba_tiempo_condor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Prueba_tiempo_condor.elf Prueba_tiempo_condor.map: $(OBJS) $(USER_OBJS) C:\Users\Victor\ Pizarro\OneDrive\ -\ Universidad\ Técnica\ Federico\ Santa\ María\VP\Projects\CONDOR\Software\PabloPMM\Mejoras\Prueba_Tiempo_Condor\STM32H723ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Prueba_tiempo_condor.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Victor Pizarro\OneDrive - Universidad Técnica Federico Santa María\VP\Projects\CONDOR\Software\PabloPMM\Mejoras\Prueba_Tiempo_Condor\STM32H723ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Prueba_tiempo_condor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
