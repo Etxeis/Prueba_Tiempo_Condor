@@ -70,92 +70,330 @@ void iniciar_DWT(void)
 // MEDICIÓN DE LOS PRINT (SE PASA EL NÚMERO DE VECES QUE SE QUIERE REALIZAR LA OPERACIÓN COMO PARÁMETRO)
 void test_printeo_caracter(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
     
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         printf("a\n");
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    // Obtener el valor máximo, mínimo y promedio entre todos los tiempos
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio printf(): %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo printf(): %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo printf(): %lu ns\r\n\r\n", min_value);
 }
 
 void test_printeo_multiples_caracteres(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
     
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         printf("[TEST] Printf simple.\n");
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio printf() múltiples caractéres: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo printf() múltiples caractéres: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo printf() múltiples caractéres: %lu ns\r\n\r\n", min_value);
 }
 
 // MEDICIÓN DE LAS ASIGNACIONES SIMPLES
 void test_asignaciones_8bits(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
 
     volatile uint8_t asignacion;
 
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         asignacion = rand() & 0xFF;
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio asignación 8bits: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo asignación 8bits: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo asignación 8bits: %lu ns\r\n\r\n", min_value);
 
 }
 
 void test_asignaciones_16bits(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
 
     volatile uint16_t asignacion;
 
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         asignacion = rand() & 0xFFFF;
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio asignación 16bits: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo asignación 16bits: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo asignación 16bits: %lu ns\r\n\r\n", min_value);
 
 }
 
 void test_asignaciones_32bits(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
 
     volatile uint32_t asignacion;
 
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         asignacion = ((uint32_t)rand() << 16) | (uint32_t)rand();
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio asignación 32bits: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo asignación 32bits: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo asignación 32bits: %lu ns\r\n\r\n", min_value);
 
 }
 
 // MEDICIÓN DE TIM2
 void test_lectura_tim_dos(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
 
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         uint32_t t = TIM2->CNT;  // <--- lectura de TIM2
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio lectura TIM2: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo lectura TIM2: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo lectura TIM2: %lu ns\r\n\r\n", min_value);
 
 }
 
 // MEDICIÓN SWITCH CASE
 void test_switch(uint32_t iteraciones)
 {
-    uint16_t GPIO_Pin = GPIO_PIN_3;
-    uint8_t canal = 0;
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
+    volatile uint16_t GPIO_Pin = GPIO_PIN_3;
+    volatile uint8_t canal = 0;
 
     volatile uint32_t counter = 0;
 
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         switch (GPIO_Pin) {
             case GPIO_PIN_1: canal = 1; break;
             case GPIO_PIN_2: canal = 2; break;
@@ -163,8 +401,37 @@ void test_switch(uint32_t iteraciones)
             case GPIO_PIN_4: canal = 4; break;
             default: canal = 99; break;
         }
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
+
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio switch: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo switch: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo switch: %lu ns\r\n\r\n", min_value);
 }
 
 // MEDICIÓN DE LA CONDICIÓN IF, el segundo parámetro es el número de condiciones que se quiere probar
@@ -222,6 +489,13 @@ void test_if(uint32_t iteraciones, uint8_t condiciones)
 // Medición de coincidencias 
 void test_coincidencias(uint32_t iteraciones)
 {
+    volatile uint32_t inicio, fin, ciclos, tiempo_ns;
+    volatile uint32_t tiempos[iteraciones];
+    volatile uint32_t max_value = 0;
+    volatile uint32_t min_value = 4294967295;
+    volatile uint32_t sum_value = 0;
+    volatile uint32_t tiempo_medio;
+
     volatile uint32_t counter = 0;
 
     uint32_t t1 = 1000;
@@ -231,96 +505,74 @@ void test_coincidencias(uint32_t iteraciones)
 
     while (counter < iteraciones)
     {
+        DWT->CYCCNT = 0;
+        inicio = DWT->CYCCNT;
         if ( ch1 != ch2 &&
              (t2 - t1) >= 50 &&
              (t2 - t1) <= 800 ) {
             __NOP();
         }
+        fin = DWT->CYCCNT;
+
+        ciclos = fin - inicio;
+        tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
+        
+        tiempos[counter] = tiempo_ns;
+
         counter++;
     }
 
+    for (uint32_t i=0; i<=counter; i++)
+    {
+        if (tiempos[i] > max_value)
+        {
+            max_value = tiempos[i];
+        }
+        if (tiempos[i] < min_value)
+        {
+            min_value = tiempos[i];
+        }
+
+        sum_value += tiempos[i];
+
+    }
+
+    tiempo_medio = sum_value/iteraciones;
+
+
+    printf("Tiempo promedio coincidencia: %lu ns\r\n\r\n", tiempo_medio);
+    printf("Tiempo máximo coincidencia: %lu ns\r\n\r\n", max_value);
+    printf("Tiempo mínimo coincidencia: %lu ns\r\n\r\n", min_value);
 }
 
 
 void medir_tiempo_ejemplo(void)
 {
-
-    uint32_t inicio, fin, ciclos, tiempo_ns;
-
     // 1) MEDIR TIEMPO DE UN printf()
-    inicio = DWT->CYCCNT;
-
     test_printeo_caracter(100); // UN SOLO CARACTER
     //test_printeo_multiples_caracteres(100); // MÚLTIPLES CARACTERES
 
-    fin = DWT->CYCCNT;
-    ciclos = fin - inicio;
-    tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
-    printf("Tiempo printf(): %lu ns\r\n\r\n", tiempo_ns);
-
-
 
     // 2) MEDIR UNA ASIGNACIÓN SIMPLE
-    DWT->CYCCNT = 0;
-    inicio = DWT->CYCCNT;
-
     test_asignaciones_8bits(100); // Probar asignaciones para variables de 8 bits
     //test_asignaciones_16bits(100); // Probar asignaciones para variables de 16 bits
     //test_asignaciones_32bits(100); // Probar asignaciones para variables de 32 bits
 
-    fin = DWT->CYCCNT;
-    ciclos = fin - inicio;
-    tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
-    printf("Tiempo asignación simple: %lu ns\r\n\r\n", tiempo_ns);
-
-
 
     // 3) MEDIR LECTURA DE TIM2->CNT
-    DWT->CYCCNT = 0;
-    inicio = DWT->CYCCNT;
-
     test_lectura_tim_dos(100);
-
-    fin = DWT->CYCCNT;
-    ciclos = fin - inicio;
-    tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
-    printf("Tiempo lectura TIM2->CNT: %lu ns\r\n\r\n", tiempo_ns);
-
 
 
     // 4) MEDIR EL switch
-    DWT->CYCCNT = 0;
-    inicio = DWT->CYCCNT;
-
     test_switch(100);
 
-    fin = DWT->CYCCNT;
-    ciclos = fin - inicio;
-    tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
-    printf("Tiempo switch-case: %lu ns\r\n\r\n", tiempo_ns);
 
     // 5) MEDIR IF Statements con distinto número de condiciones
-    DWT->CYCCNT = 0;
-    inicio = DWT->CYCCNT;
-
     test_if(100, 3); // Se pueden probar condicionales de 1 a 4 (segundo parámetro)
-
-    fin = DWT->CYCCNT;
-    ciclos = fin - inicio;
-    tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
-    printf("Tiempo condicional-if: %lu ns\r\n\r\n", tiempo_ns);
 
 
     // 6) MEDIR COMPARACIONES DE LAS COINCIDENCIAS
-    DWT->CYCCNT = 0;
-    inicio = DWT->CYCCNT;
-
     test_coincidencias(100);
-
-    fin = DWT->CYCCNT;
-    ciclos = fin - inicio;
-    tiempo_ns = (ciclos * (1e9f / SystemCoreClock));
-    printf("Tiempo bloque coincidencia (comparaciones): %lu ns\r\n\r\n", tiempo_ns);
 
 
     // RESUMEN
